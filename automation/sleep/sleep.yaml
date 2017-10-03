@@ -1,0 +1,30 @@
+- id: sleep_mode_on
+  alias: Sleep Mode Turn On
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0000fd2037
+      click_type: single
+  action:
+    - service: scene.turn_on
+      entity_id: scene.turn_off
+    - service: remote.turn_off
+      entity_id: remote.harmony_hub
+    - service: shell_command.sleep_htpc
+      
+- id: sleep_mode_off
+  alias: Sleep Mode Turn Off
+  trigger:
+  - platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0000fd2037
+      click_type: double
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.default

@@ -1,0 +1,40 @@
+living_room_lights:
+  name: Living Room
+  view: no
+  entities:
+    - light.living_room_1
+    - light.living_room_2
+    - light.living_room_3
+
+lights:
+  name: Lights
+  view: no
+  entities:
+    - group.living_room_lights
+    - light.kitchen
+    - light.bedroom
+
+weather:
+  name: Weather
+  view: no
+  entities:
+    - sensor.yr_symbol
+    - sensor.yr_temperature
+    - sensor.yr_pressure
+    - sensor.yr_humidity
+    - sensor.yr_wind_speed
+    - sensor.yr_precipitation
+
+residents:
+  name: Residents
+  entities:
+    - device_tracker.xiaomimi5
+    - device_tracker.natalia
+    
+remote:
+  name: Remote
+  entities:
+    - remote.harmony_hub
+    - sensor.current_activity
+    - input_select.harmony
+

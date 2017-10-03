@@ -1,0 +1,12 @@
+- platform: yeelight
+  devices:
+    192.168.0.108:
+      name: Living Room 1
+    192.168.0.106:
+      name: Living Room 2
+    192.168.0.107:
+      name: Living Room 3
+    192.168.0.111:
+      name: Kitchen
+    192.168.0.110:
+      name: Bedroom

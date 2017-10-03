@@ -1,0 +1,60 @@
+- id: harmony_change_activity
+  alias: Harmony Change Activity
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    from: 'Select Input'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.harmony_hub
+      data_template:
+        activity: >
+          {% if is_state("input_select.harmony", "Watch TV") %}
+            27771445
+          {% elif is_state("input_select.harmony", "Watch Shield TV") %}
+            27771600
+          {% elif is_state("input_select.harmony", "Listen to Music via Headphones") %}
+            27771639
+          {% elif is_state("input_select.harmony", "Listen to Music via Speakers") %}
+            27771687
+          {% else %}
+          {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select Activity"
+- id: harmony_off
+  alias: Turn Off Harmony Devices
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    to: 'Power Off'
+  action:
+    - service: remote.turn_off
+      entity_id: remote.harmony_hub
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select Activity"
+        
+- id: harmony_off_away
+  alias: Turn off Harmony devices when all residents away
+  trigger:
+    platform: state
+    entity_id: group.residents
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: remote.turn_off
+    entity_id: remote.harmony_hub
+    
+- id: harmony_oppo_volume_up
+  alias: Volume Up on Oppo HA-1
+  trigger:
+    platform: state
+    entity_id: input_slider.oppo_volume
+  action:
+    service: script.turn_on
+    entity_id: script.oppo_volume_up
+    

@@ -1,0 +1,77 @@
+- id: lights_on_sunset  
+  alias: Turn on light when sun sets and someone is at home
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: "00:00:00"
+  condition:
+  - condition: state
+    entity_id: group.residents
+    state: 'home'
+  action:
+  - service: light.turn_on
+    entity_id: group.lights
+
+- id: lights_on_arrival
+  alias: 'Turn on light when after sun set and someone gets home'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.xiaomimi5
+    from: 'not_home'
+    to: 'home'
+  - platform: state
+    entity_id: device_tracker.natalia
+    from: 'not_home'
+    to: 'home'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: light.turn_on
+    entity_id: group.lights
+
+- id: lights_off_sunrise  
+  alias: Turn off light when sun rises
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: "00:00:00"
+  action:
+  - service: light.turn_off
+    entity_id: group.lights
+
+- id: lights_off_away
+  alias: Turn off light when all residents away
+  trigger:
+    platform: state
+    entity_id: group.residents
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: light.turn_off
+    entity_id: group.lights
+    
+# - id: lights_off_switch
+  # alias: Turn off light when switch pressed
+  # trigger:
+    # platform: event
+    # event_type: click
+    # event_data:
+      # entity_id: binary_sensor.switch_158d0000fd2037
+      # click_type: single
+  # action:
+    # service: scene.turn_on
+    # entity_id: scene.turn_off
+    
+# - id: lights_on_double_switch
+  # alias: Turn on light when switch double pressed
+  # trigger:
+    # platform: event
+    # event_type: click
+    # event_data:
+      # entity_id: binary_sensor.switch_158d0000fd2037
+      # click_type: double
+  # action:
+    # service: scene.turn_on
+    # entity_id: scene.default

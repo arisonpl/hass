@@ -1,0 +1,3 @@
+gateways:
+   - mac: !secret gateway_mac
+     key: !secret gateway_key

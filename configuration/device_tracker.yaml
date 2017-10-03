@@ -1,0 +1,6 @@
+- platform: ubus
+  host: !secret rooter_host
+  username: !secret rooter_user
+  password: !secret rooter_password
+  interval_seconds: 10
+  consider_home: 21

@@ -1,0 +1,13 @@
+platform: flux
+lights:
+  - group.living_room_lights
+  - light.kitchen
+  - light.bedroom
+name: Fluxer
+stop_time: '00:00'
+start_colortemp: 5000
+sunset_colortemp: 4000
+stop_colortemp: 3000
+brightness: 200
+disable_brightness_adjust: true
+mode: mired

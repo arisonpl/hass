@@ -1,0 +1,4 @@
+- platform: kodi
+  host: !secret kodi_host
+  name: !secret kodi_name
+  

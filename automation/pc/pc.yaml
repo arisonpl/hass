@@ -1,0 +1,35 @@
+- id: htpc_restart
+  alias: HTPC restart
+  trigger:
+    platform: state
+    entity_id: input_select.htpc_options
+    to: "Restart"
+  action:
+    - service: shell_command.restart_htpc
+
+- id: htpc_shutdown
+  alias: HTPC Shutdown
+  trigger:
+    platform: state
+    entity_id: input_select.htpc_options
+    to: "Shutdown"
+  action:
+    - service: shell_command.shutdown_htpc
+
+- id: htpc_sleep
+  alias: HTPC Sleep
+  trigger:
+    platform: state
+    entity_id: input_select.htpc_options
+    to: "Sleep"
+  action:
+    - service: shell_command.sleep_htpc
+
+- id: htpc_hibernate
+  alias: HTPC hibernate
+  trigger:
+    platform: state
+    entity_id: input_select.htpc_options
+    to: "Hibernate"
+  action:
+    - service: shell_command.hibernate_htpc

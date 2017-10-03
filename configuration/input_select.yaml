@@ -1,0 +1,22 @@
+harmony:
+  name: Harmony
+  options:
+    - Select Activity
+    - Watch TV
+    - Watch Shield TV
+    - Listen to Music via Headphones
+    - Listen to Music via Speakers
+    - Power Off
+  initial: Select Activity
+  icon: mdi:monitor
+  
+htpc_options:
+  name: HTPC Power Options
+  options:
+    - Restart
+    - Shutdown
+    - None
+    - Sleep
+    - Hibernate
+  initial: None
+  icon: mdi:desktop-tower

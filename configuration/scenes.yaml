@@ -1,0 +1,19 @@
+- name: Default
+  entities:
+    group.living_room_lights:
+      state: on
+      brightness: 150
+      transition: 2
+      color_temp: 230
+- name: Turn Off
+  entities:
+    group.living_room_lights:
+      state: off      
+      transition: 2
+- name: Watch Movie
+  entities:
+    group.living_room_lights:
+      state: on
+      brightness: 70
+      transition: 2
+      rgb_color: [93,131,255]

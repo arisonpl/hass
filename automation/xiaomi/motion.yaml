@@ -1,36 +1,3 @@
-- alias: If there is motion and its dark turn on the gateway light
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_sensor_158d000xxxxxc2
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: numeric_state
-    entity_id: sensor.illumination_34ce00xxxx11
-    below: 300
-  action:
-    - service: light.turn_on
-      entity_id: light.gateway_light_34ce00xxxx11
-      data:
-        brightness: 5
-    - service: automation.turn_on
-      data:
-        entity_id: automation.MOTION_OFF
-- alias: If there no motion for 5 minutes turn off the gateway light
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_sensor_158d00012965b6
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 5
-  action:
-    - service: light.turn_off
-      entity_id: light.gateway_light_34ce00xxxx11
-    - service: automation.turn_off
-      data:
-        entity_id: automation.Motion_off
-        
 - id: motion_detected_kitchen_light
   alias: Turn on light in Kitchen when motion detected
   trigger:
@@ -56,6 +23,33 @@
         minutes: 1
   action:
     - service: light.turn_off
-      entity_id: light.kitchen      
+      entity_id: light.kitchen
+      
+- id: motion_detected_bedroom_light
+  alias: Turn on light in Bedroom when motion detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000f954cf
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.bedroom
+
+- id: motion_not_detected_bedroom_light
+  alias: Turn off light in Bedroom when motion detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000f954cf
+      to: 'off'
+      for:
+        minutes: 20
+  action:
+    - service: light.turn_off
+      entity_id: light.bedroom      
       
   

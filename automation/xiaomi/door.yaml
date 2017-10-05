@@ -1,0 +1,24 @@
+- id: front_door_closed
+  alias: Notify when front door is closed after an alert
+  trigger:
+  platform: state
+  entity_id: binary_sensor.front_door_open_for_5mins
+  from: 'on'
+  to: 'off'
+  action:
+  service: notify.telegram_hass_kom_bot
+  data:
+    message: '{{now().strftime("%H:%M:%S %Y-%m-%d")}}: Front door has been closed.' 
+ 
+#Turn the alert off when a telegram message of /ackGarage is received.       
+- id: reply_ack_front_door
+  alias: 'Telegram bot to ack the front door being open'
+  hide_entity: true
+  trigger:
+  platform: event
+  event_type: telegram_command
+  event_data:
+    command: '/ackFrontDoor'
+  action:
+  - service: alert.turn_off
+    entity_id: alert.front_door

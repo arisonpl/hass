@@ -1,13 +1,26 @@
-platform: flux
-lights:
-  - group.living_room_lights
-  - light.kitchen
-  - light.bedroom
-name: Fluxer
-stop_time: '00:00'
-start_colortemp: 5000
-sunset_colortemp: 4000
-stop_colortemp: 3000
-brightness: 200
-disable_brightness_adjust: true
-mode: mired
+- platform: flux
+  lights:
+    - group.living_room_lights
+    - light.kitchen
+    - light.bedroom
+  name: Fluxer
+  stop_time: '00:00'
+  start_colortemp: 5500
+  sunset_colortemp: 5000
+  stop_colortemp: 4000
+  brightness: 200
+  disable_brightness_adjust: true
+  mode: mired
+  
+- platform: wake_on_lan
+  mac_address: !secret htpc_mac
+  name: HTPC State
+  host: !secret htpc_host
+  turn_off:
+    service: shell_command.sleep_htpc
+    
+# - platform: xiaomi_plug
+  # name: Xiaomi WiFi Strip
+  # host: 192.168.0.105
+  # token: 44028465b04b87714b39f66abcf8c329
+  

@@ -13,17 +13,23 @@ lights:
     - group.living_room_lights
     - light.kitchen
     - light.bedroom
+    - switch.fluxer
 
 weather:
   name: Weather
   view: no
   entities:
-    - sensor.yr_symbol
-    - sensor.yr_temperature
-    - sensor.yr_pressure
-    - sensor.yr_humidity
-    - sensor.yr_wind_speed
-    - sensor.yr_precipitation
+    - sensor.symbol
+    - sensor.temperature_inside
+    - sensor.temperature_outside
+    - sensor.pressure_outside
+    - sensor.humidity_inside
+    - sensor.humidity_outside    
+    - sensor.weather_temperature
+    - sensor.weather_pressure
+    - sensor.weather_humidity
+    - sensor.weather_wind_speed
+    - sensor.weather_precipitation
 
 residents:
   name: Residents
@@ -38,3 +44,46 @@ remote:
     - sensor.current_activity
     - input_select.harmony
 
+htpc:
+  name: HTPC Power Management
+  entities:
+    - switch.htpc_state
+    - input_select.htpc_options
+
+battery_sensors:
+  name: Sensors battery level
+  entities:
+    - sensor.battery_doorbell_switch
+    - sensor.battery_switch
+    - sensor.battery_motion_sensor_1
+    - sensor.battery_motion_sensor_2
+    - sensor.battery_temperature_inside
+    - sensor.battery_temperature_outside
+    - sensor.battery_door_sensor
+    
+battery_sensors_low:
+  name: Sensors battery level low
+  entities:
+    - sensor.battery_doorbell_switch_low
+    - sensor.battery_switch_low
+    - sensor.battery_motion_sensor_1_low
+    - sensor.battery_motion_sensor_2_low
+    - sensor.battery_temperature_inside_low
+    - sensor.battery_temperature_outside_low
+    - sensor.battery_door_sensor_low
+    
+power:
+  name: Power
+  entities:
+    - switch.plug_158d0001701c63
+    - switch.plug_158d00017027e4
+    
+sensors:
+  name: Sensors
+  entities:
+    - binary_sensor.motion_sensor_158d00012965b6
+    - binary_sensor.motion_sensor_158d0000f954cf
+    - binary_sensor.switch_158d00017141f7
+    - binary_sensor.switch_158d0000fd2037
+    - binary_sensor.door_window_sensor_158d0001002bf2
+ 

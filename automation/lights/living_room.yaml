@@ -3,14 +3,16 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: "00:00:00"
+    offset: "-00:30:00"
   condition:
   - condition: state
     entity_id: group.residents
     state: 'home'
   action:
   - service: light.turn_on
-    entity_id: group.lights
+    entity_id: group.living_room_lights
+  - service: switch.turn_on
+    entity_id: switch.fluxer
 
 - id: lights_on_arrival
   alias: 'Turn on light when after sun set and someone gets home'
@@ -28,18 +30,22 @@
     entity_id: sun.sun
     state: 'below_horizon'
   action:
-    service: light.turn_on
-    entity_id: group.lights
+  - service: light.turn_on
+    entity_id: group.living_room_lights
+  - service: switch.turn_on
+    entity_id: switch.fluxer
 
 - id: lights_off_sunrise  
   alias: Turn off light when sun rises
   trigger:
   - platform: sun
     event: sunrise
-    offset: "00:00:00"
+    offset: "00:30:00"
   action:
   - service: light.turn_off
     entity_id: group.lights
+  - service: switch.turn_off
+    entity_id: switch.fluxer
 
 - id: lights_off_away
   alias: Turn off light when all residents away
@@ -49,8 +55,10 @@
     from: 'home'
     to: 'not_home'
   action:
-    service: light.turn_off
+  - service: light.turn_off
     entity_id: group.lights
+  - service: switch.turn_off
+    entity_id: switch.fluxer
     
 # - id: lights_off_switch
   # alias: Turn off light when switch pressed

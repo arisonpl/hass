@@ -1,0 +1,8 @@
+- platform: webostv
+  host: !secret webostv_host
+  name: livingroom_tv
+  filename: webostv.conf
+  
+- name: telegram_hass_kom_bot
+  platform: telegram
+  chat_id: !secret telegram_chat_ID

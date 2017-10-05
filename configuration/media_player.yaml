@@ -2,3 +2,17 @@
   host: !secret kodi_host
   name: !secret kodi_name
   
+- platform: webostv
+  host: !secret webostv_host
+  mac: !secret webostv_mac
+  name: Living Room TV
+  timeout: 5
+  filename: webostv.conf
+  customize:
+    sources:
+      - livetv
+      - youtube
+      - makotv
+      - netflix
+      - hdmi2
+      - plex

@@ -13,7 +13,7 @@ homeassistant:
   customize: !include ./configuration/customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -74,16 +74,19 @@ ifttt: !include ./configuration/ifttt.yaml
 light: !include ./configuration/light.yaml
 scene: !include ./configuration/scenes.yaml
 remote: !include ./configuration/remote.yaml
-xiaomi: !include ./configuration/xiaomi.yaml
+xiaomi_aqara: !include ./configuration/xiaomi_aqara.yaml
 device_tracker: !include ./configuration/device_tracker.yaml
 media_player: !include ./configuration/media_player.yaml
 input_select: !include ./configuration/input_select.yaml
 input_boolean: !include ./configuration/input_boolean.yaml
 #input_slider: !include ./configuration/input_slider.yaml
-sensor: !include ./configuration/sensor.yaml
+sensor: !include_dir_merge_list sensors/sensor
+binary_sensor: !include_dir_merge_list sensors/binary
 emulated_hue: !include ./configuration/emulated_hue.yaml
 shell_command: !include ./configuration/shell_command.yaml
 switch: !include ./configuration/switch.yaml
 automation: !include_dir_merge_list automation
 script: !include_dir_merge_list scripts
+notify: !include ./configuration/notify.yaml
+telegram_bot: !include ./configuration/telegram.yaml
 

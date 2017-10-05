@@ -1,0 +1,41 @@
+- platform: template
+  sensors:
+    temperature_inside:
+      unit_of_measurement: 'C'
+      friendly_name: 'Temperature Inside'
+      value_template: '{{ "%0.1f" | format(states.sensor.temperature_158d00019fdfa8.state|float) }}'
+
+- platform: template
+  sensors:
+    temperature_outside:
+      unit_of_measurement: 'C'
+      friendly_name: 'Temperature Outside'
+      value_template: '{{ "%0.1f" | format(states.sensor.temperature_158d00019fdfbd.state|float) }}'
+
+- platform: template
+  sensors:
+    pressure_inside:
+      unit_of_measurement: 'hPa'
+      friendly_name: 'Pressure Inside'
+      value_template: '{{ "%0.1f" | format(states.sensor.pressure_158d00019fdfa8.state|float) }}'
+
+- platform: template
+  sensors:
+    pressure_outside:
+      unit_of_measurement: 'hPa'
+      friendly_name: 'Pressure Outside'
+      value_template: '{{ "%0.1f" | format(states.sensor.pressure_158d00019fdfbd.state|float) }}'
+
+- platform: template
+  sensors:
+    humidity_inside:
+      unit_of_measurement: '%'
+      friendly_name: 'Humidity Inside'
+      value_template: '{{ "%0.1f" | format(states.sensor.humidity_158d00019fdfa8.state|float) }}'
+
+- platform: template
+  sensors:
+    humidity_outside:
+      unit_of_measurement: '%'
+      friendly_name: 'Humidity Outside'
+      value_template: '{{ "%0.1f" | format(states.sensor.humidity_158d00019fdfbd.state|float) }}'

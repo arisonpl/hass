@@ -9,6 +9,13 @@
     entity_id: media_player.kodishieldtv
     from: 'paused'
     to: 'playing'
+  - platform: state
+    entity_id: media_player.plexkodiconnect
+    from: 'idle'
+    to: 'playing'
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    to: 'Netflix'
   condition:
   - condition: state
     entity_id: sun.sun
@@ -22,9 +29,17 @@
       value_template: '{{ states.media_player.kodishieldtv.attributes.media_content_type == "tvshow" }}'
     - condition: template
       value_template: '{{ states.media_player.kodishieldtv.attributes.media_content_type == "movie" }}'
+    - condition: template
+      value_template: '{{ states.media_player.plexkodiconnect.attributes.media_content_type == "movie" }}'
+    - condition: template
+      value_template: '{{ states.media_player.plexkodiconnect.attributes.media_content_type == "tvshow" }}'
+    - condition: template
+      value_template: '{{ states.media_player.living_room_tv.attributes.source == "Netflix" }}'
   action:
-    service: scene.turn_on
+  - service: scene.turn_on
     entity_id: scene.watch_movie
+  - service: switch.turn_off
+    entity_id: switch.fluxer
     
 - id: kodi_movie_paused
   alias: 'Playing Movie on Kodi Paused'
@@ -47,8 +62,10 @@
     - condition: template
       value_template: '{{ states.media_player.kodishieldtv.attributes.media_content_type == "movie" }}'
   action:
-    service: scene.turn_on
+  - service: scene.turn_on
     entity_id: scene.default
+  - service: switch.turn_off
+    entity_id: switch.fluxer
       
 - id: kodi_movie_off
   alias: 'Playing Movie on Kodi Stopped'
@@ -57,6 +74,9 @@
     entity_id: media_player.kodishieldtv
     from: 'playing'
     to: 'idle'
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    from: 'Netflix'
   condition:
   - condition: state
     entity_id: sun.sun
@@ -65,5 +85,8 @@
     entity_id: group.living_room_lights
     state: 'on'
   action:
-    service: scene.turn_on
+  - service: scene.turn_on
     entity_id: scene.default
+  - service: switch.turn_on
+    entity_id: switch.fluxer
+   

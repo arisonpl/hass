@@ -1,0 +1,273 @@
+#Motion Sensor 1
+- platform: template
+  sensors:
+    battery_motion_sensor_1:
+      friendly_name: 'Motion Sensor 1'
+      value_template: "{{ states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level|default(-1)|int if states.binary_sensor.motion_sensor_158d00012965b6 is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: binary_sensor.motion_sensor_158d00012965b6
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_motion_sensor_1_low:
+      value_template: '{{ states.binary_sensor.motion_sensor_158d00012965b6.attributes.battery_level < 10 }}'
+      friendly_name: 'Motion Sensor 1 battery is low'
+      
+#Motion Sensor 2
+- platform: template
+  sensors:
+    battery_motion_sensor_2:
+      friendly_name: 'Motion Sensor 2'
+      value_template: "{{ states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level|default(-1)|int if states.binary_sensor.motion_sensor_158d0000f954cf is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: binary_sensor.motion_sensor_158d0000f954cf
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_motion_sensor_2_low:
+      value_template: '{{ states.binary_sensor.motion_sensor_158d0000f954cf.attributes.battery_level < 10 }}'
+      friendly_name: 'Motion Sensor 2 battery is low'
+      
+#Switch
+- platform: template
+  sensors:
+    battery_switch:
+      friendly_name: 'Switch'
+      value_template: "{{ states.binary_sensor.switch_158d0000fd2037.attributes.battery_level|default(-1)|int if states.binary_sensor.switch_158d0000fd2037 is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.binary_sensor.switch_158d0000fd2037.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.binary_sensor.switch_158d0000fd2037.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: binary_sensor.switch_158d0000fd2037
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_switch_low:
+      value_template: '{{ states.binary_sensor.switch_158d0000fd2037.attributes.battery_level < 10 }}'
+      friendly_name: 'Switch battery is low'
+      
+#Doorbell Switch
+- platform: template
+  sensors:
+    battery_doorbell_switch:
+      friendly_name: 'Doorbell Switch'
+      value_template: "{{ states.binary_sensor.switch_158d00017141f7.attributes.battery_level|default(-1)|int if states.binary_sensor.switch_158d00017141f7 is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.binary_sensor.switch_158d00017141f7.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.binary_sensor.switch_158d00017141f7.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: binary_sensor.switch_158d00017141f7
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_doorbell_switch_low:
+      value_template: '{{ states.binary_sensor.switch_158d00017141f7.attributes.battery_level < 10 }}'
+      friendly_name: 'Doorbell Switch battery is low'
+      
+#Temperature Inside
+- platform: template
+  sensors:
+    battery_temperature_inside:
+      friendly_name: 'Temperature Inside'
+      value_template: "{{ states.sensor.temperature_158d00019fdfa8.attributes.battery_level|default(-1)|int if states.sensor.temperature_158d00019fdfa8 is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.sensor.temperature_158d00019fdfa8.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.sensor.temperature_158d00019fdfa8.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: sensor.temperature_158d00019fdfa8
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_temperature_inside_low:
+      value_template: '{{ states.sensor.temperature_158d00019fdfa8.attributes.battery_level < 10 }}'
+      friendly_name: 'Temperature Inside battery is low'
+      
+#Temperature Outside
+- platform: template
+  sensors:
+    battery_temperature_outside:
+      friendly_name: 'Temperature Outside'
+      value_template: "{{ states.sensor.temperature_158d00019fdfbd.attributes.battery_level|default(-1)|int if states.sensor.temperature_158d00019fdfbd is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.sensor.temperature_158d00019fdfbd.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.sensor.temperature_158d00019fdfbd.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: sensor.temperature_158d00019fdfbd
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_temperature_outside_low:
+      value_template: '{{ states.sensor.temperature_158d00019fdfbd.attributes.battery_level < 10 }}'
+      friendly_name: 'Temperature Outside battery is low'
+      
+#Door Sensor
+- platform: template
+  sensors:
+    battery_door_sensor:
+      friendly_name: 'Door Sensor'
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level|default(-1)|int if states.binary_sensor.door_window_sensor_158d0001002bf2 is not none }}"
+      unit_of_measurement: '%'
+      icon_template: '{% if states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level == 100 %}
+                         mdi:battery
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 90 %}
+                         mdi:battery-90
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 80 %}
+                         mdi:battery-80
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 70 %}
+                         mdi:battery-70
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 60 %}
+                         mdi:battery-60
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 50 %}
+                         mdi:battery-50
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 40 %}
+                         mdi:battery-40
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 30 %}
+                         mdi:battery-30
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 20 %}
+                         mdi:battery-20
+                      {% elif states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level >= 10 %}
+                         mdi:battery-10
+                      {% else %}
+                         battery-outline
+                      {% endif %}'
+      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
+
+### Battery level lower than 10% ###
+- platform: template
+  sensors:
+    battery_door_sensor_low:
+      value_template: '{{ states.binary_sensor.door_window_sensor_158d0001002bf2.attributes.battery_level < 10 }}'
+      friendly_name: 'Door Sensor battery is low'
+      

@@ -89,3 +89,6 @@ light.living_room_3:
   
 group.all_automation:
   hidden: true
+  
+group.battery_sensors_low:
+  ignored: true

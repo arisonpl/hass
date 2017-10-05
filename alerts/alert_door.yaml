@@ -1,0 +1,11 @@
+front_door:
+  name: '{{now().strftime("%H:%M:%S %Y-%m-%d")}}: Front door open for {{ relative_time(states.binary_sensor.door_window_sensor_158d0001002bf2.open_since) }}. /ackFrontDoor'
+  entity_id: binary_sensor.door_window_sensor_158d0001002bf2
+  state: 'open'  
+  repeat:
+  - 5
+  - 15
+  can_acknowledge: True  
+  skip_first: True  
+  notifiers:
+  - telegram_hass_kom_bot

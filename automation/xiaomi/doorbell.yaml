@@ -16,8 +16,35 @@
       entity_id: input_boolean.mute_gateway_sounds
       state: 'off'
   action:
-    - service: xiaomi.play_ringtone
+    - service: xiaomi_aqara.play_ringtone
       data_template:
         gw_mac: !secret gateway_mac
         ringtone_id: 10001
         ringtone_vol: 15
+    - service: notify.livingroom_tv
+      data:
+        message: Doorbell rings
+        data:
+          icon: "/data/data/com.termux/files/home/.homeassistant/images/bell.png"
+        
+- id: notify_when_doorbell_rings
+  alias: Notify when doorbell rings but no one is home
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00017141f7
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00017141f7
+        click_type: double
+  condition:
+  - condition: state
+    entity_id: group.residents
+    state: 'not_home'
+  action:
+    - service: notify.telegram_hass_kom_bot
+      data:
+        message: '{{now().strftime("%H:%M:%S %Y-%m-%d")}}: Doorbell rings'

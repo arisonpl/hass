@@ -28,11 +28,23 @@
   - platform: state
     entity_id: input_select.htpc_options
     to: "Sleep"
+  - platform: state
+    entity_id: switch.htpc_state
+    to: "off" 
   action:
   - service: shell_command.sleep_htpc
   - service: notify.livingroom_tv
     data:
       message: "HTPC goes to sleep"
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "juggle"
+  - delay: 00:00:04
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "solid"
 
 - id: htpc_hibernate
   alias: HTPC hibernate
@@ -55,7 +67,34 @@
   action:
   - service: notify.livingroom_tv
     data:
-      message: "HTPC turned on"  
+      message: "HTPC turned on"
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "cyclon rainbow"
+  - delay: 00:00:20
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "solid"
+      
+# - id: animation_htpc_turn_on
+  # alias: HTPC turned on then launch animation
+  # trigger:
+  # - platform: numeric_state
+    # entity_id: switch.pc_strip
+    # value_template: '{{ state.attributes.load_power }}'
+    # above: 0.7
+  # action:
+  # - service: light.turn_on
+    # data:
+      # entity_id: light.pc_leds
+      # effect: "cyclon rainbow"
+  # - delay: 00:00:04
+  # - service: light.turn_on
+    # data:
+      # entity_id: light.pc_leds
+      # effect: "solid"
     
 - id: wake_htpc_kodi
   alias: Wake HTPC when movie playback requested

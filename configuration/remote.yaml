@@ -1,4 +1,5 @@
-platform: harmony
-name: Harmony Hub
-host: !secret harmony_host
-port: !secret harmony_port
+- platform: harmony
+  name: Harmony Hub
+  host: !secret harmony_host
+  port: !secret harmony_port
+  activity: Watch Smart TV

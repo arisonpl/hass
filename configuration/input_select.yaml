@@ -2,11 +2,10 @@ harmony:
   name: Harmony
   options:
     - Select Activity
-    - Watch TV
+    - Watch Smart TV
     - Watch Shield TV
     - Listen to Music via Headphones
     - Listen to Music via Speakers
-    - Power Off
   initial: Select Activity
   icon: mdi:monitor
   
@@ -20,3 +19,23 @@ htpc_options:
     - Hibernate
   initial: None
   icon: mdi:desktop-tower
+  
+marcin_status_dropdown:
+  name: Marcin
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  initial: Home
+  
+natalia_status_dropdown:
+  name: Natalia
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  initial: Home

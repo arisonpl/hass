@@ -19,8 +19,12 @@
   turn_off:
     service: shell_command.sleep_htpc
     
-# - platform: xiaomi_plug
-  # name: Xiaomi WiFi Strip
-  # host: 192.168.0.105
-  # token: 44028465b04b87714b39f66abcf8c329
+- platform: xiaomi_plug
+  name: TV Strip
+  host: 192.168.0.105
+  token: !secret tv_strip_token
   
+- platform: xiaomi_plug
+  name: PC Strip
+  host: 192.168.0.104
+  token: !secret pc_strip_token

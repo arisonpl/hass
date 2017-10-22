@@ -1,5 +1,5 @@
-- id: kodi_movie_on
-  alias: 'Playing Movie on Kodi'
+- id: movie_on
+  alias: 'Playing Movie'
   trigger:
   - platform: state
     entity_id: media_player.kodishieldtv
@@ -38,11 +38,11 @@
   action:
   - service: scene.turn_on
     entity_id: scene.watch_movie
-  - service: switch.turn_off
-    entity_id: switch.fluxer
+  # - service: switch.turn_off
+    # entity_id: switch.fluxer
     
-- id: kodi_movie_paused
-  alias: 'Playing Movie on Kodi Paused'
+- id: movie_paused
+  alias: 'Playing Movie Paused'
   trigger:
   - platform: state
     entity_id: media_player.kodishieldtv
@@ -64,11 +64,11 @@
   action:
   - service: scene.turn_on
     entity_id: scene.default
-  - service: switch.turn_off
-    entity_id: switch.fluxer
+  # - service: switch.turn_off
+    # entity_id: switch.fluxer
       
-- id: kodi_movie_off
-  alias: 'Playing Movie on Kodi Stopped'
+- id: movie_off
+  alias: 'Playing Movie Stopped'
   trigger:
   - platform: state
     entity_id: media_player.kodishieldtv
@@ -87,6 +87,6 @@
   action:
   - service: scene.turn_on
     entity_id: scene.default
-  - service: switch.turn_on
-    entity_id: switch.fluxer
+  # - service: switch.turn_on
+    # entity_id: switch.fluxer
    

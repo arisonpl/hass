@@ -1,0 +1,4 @@
+# - platform: template
+  # sensors:
+    # sleep_mode:
+      # value_template: '{{ states.binary_sensor.switch_158d0000fd2037.event == 1 }}'

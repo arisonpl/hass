@@ -1,14 +1,15 @@
+# -*- coding: utf-8 -*-
 - platform: template
   sensors:
     temperature_inside:
-      unit_of_measurement: 'C'
+      unit_of_measurement: '°C'
       friendly_name: 'Temperature Inside'
       value_template: '{{ "%0.1f" | format(states.sensor.temperature_158d00019fdfa8.state|float) }}'
 
 - platform: template
   sensors:
     temperature_outside:
-      unit_of_measurement: 'C'
+      unit_of_measurement: '°C'
       friendly_name: 'Temperature Outside'
       value_template: '{{ "%0.1f" | format(states.sensor.temperature_158d00019fdfbd.state|float) }}'
 

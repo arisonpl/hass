@@ -3,14 +3,14 @@
   trigger:
     platform: state
     entity_id: input_select.harmony
-    from: 'Select Input'
+    from: 'Select Activity'
   action:
     - service: remote.turn_on
       entity_id: remote.harmony_hub
       data_template:
         activity: >
-          {% if is_state("input_select.harmony", "Watch TV") %}
-            27771445
+          {% if is_state("input_select.harmony", "Watch Smart TV") %}
+            28323252
           {% elif is_state("input_select.harmony", "Watch Shield TV") %}
             27771600
           {% elif is_state("input_select.harmony", "Listen to Music via Headphones") %}
@@ -23,6 +23,7 @@
       entity_id: input_select.harmony
       data_template:
         option: "Select Activity"
+
 - id: harmony_off
   alias: Turn Off Harmony Devices
   hide_entity: True
@@ -42,9 +43,8 @@
   alias: Turn off Harmony devices when all residents away
   trigger:
     platform: state
-    entity_id: group.residents
-    from: 'home'
-    to: 'not_home'
+    entity_id: sensor.residents_status
+    to: 'Away'
   action:
     service: remote.turn_off
     entity_id: remote.harmony_hub

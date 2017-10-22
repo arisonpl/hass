@@ -1,0 +1,78 @@
+- id: guard_home
+  alias: Turn on guard mode
+  trigger:
+    - platform: state
+      entity_id: sensor.residents_status
+      to: 'Away'
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0000fd2037
+        click_type: long_click_press
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.guard_home
+    - service: notify.telegram_hass_kom_bot
+      data:
+        message: '{{ now().strftime("%H:%M:%S %Y-%m-%d")}}: Guard mode turned on'
+        
+- id: guard_home_off
+  alias: Turn off guard mode
+  trigger:
+    - platform: state
+      entity_id: sensor.residents_status
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_boolean.sleep_mode
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guard_home
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.guard_home
+    - service: notify.telegram_hass_kom_bot
+      data:
+        message: '{{ now().strftime("%H:%M:%S %Y-%m-%d")}}: Guard mode turned off'
+      
+- id: turn_on_alarm_door_opened
+  alias: Turn on alarm when door opened and in guard mode
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guard_home
+      state: 'on'
+  action:
+    - service: alert.turn_on
+      entity_id: alert.guard_front_door
+    - service: xiaomi_aqara.play_ringtone
+      data_template:
+        gw_mac: !secret gateway_mac
+        ringtone_id: 10002
+        ringtone_vol: 20
+    - service: notify.telegram_hass_kom_bot
+      data:
+        message: '{{ now().strftime("%H:%M:%S %Y-%m-%d")}}: Someone opened door in guard mode!'
+        
+        
+- id: reply_ack_alarm
+  alias: 'Telegram bot to ack the alarm off'
+  hide_entity: true
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/ack_alarm'
+  action:
+    - service: alert.turn_off
+      entity_id: alert.guard_front_door
+    - service: xiaomi_aqara.play_ringtone
+      data_template:
+        gw_mac: !secret gateway_mac
+        ringtone_id: 12
+        ringtone_vol: 1

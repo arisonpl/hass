@@ -1,0 +1,11 @@
+guard_home:
+  alias: Guard home
+  sequence:
+    - service: xiaomi_aqara.play_ringtone
+      data_template:
+        gw_mac: !secret gateway_mac
+        ringtone_id: 10001
+        ringtone_vol: 15
+    - service: notify.telegram_hass_kom_bot
+      data:
+        message: "Guard mode turned on"

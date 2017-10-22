@@ -1,1 +1,6 @@
+host_ip: 192.168.0.103
+listen_port: 8300
 expose_by_default: false
+exposed_domains:
+  - switch
+  - light

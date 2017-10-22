@@ -1,0 +1,30 @@
+- platform: 'bayesian'
+  prior: 0.75
+  name: 'Marcin Home'
+  probability_threshold: 0.9
+  observations:
+    - entity_id: 'device_tracker.marcin_mi5'
+      prob_given_true: 1
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.marcin_owntrack'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'home'
+      
+- platform: 'bayesian'
+  prior: 0.75
+  name: 'Natalia Home'
+  probability_threshold: 0.9
+  observations:
+    - entity_id: 'device_tracker.natalia_mi5'
+      prob_given_true: 1
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.natalia_owntrack'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'home'
+      

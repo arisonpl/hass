@@ -1,5 +1,5 @@
 - platform: template
   sensors:
-    front_door_open_for_5mins:
-      value_template: '{{ is_state("binary_sensor.door_window_sensor_158d0001002bf2", "open") and (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0001002bf2.open_since) > 15 * 60 ) }}'
+    front_door_open_for_1mins:
+      value_template: '{{ is_state("binary_sensor.door_window_sensor_158d0001002bf2", "on") and (states.binary_sensor.door_window_sensor_158d0001002bf2.attributes["Open since"])| int  >= 60 }}'
       entity_id: sensor.time

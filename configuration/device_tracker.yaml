@@ -4,3 +4,6 @@
   password: !secret rooter_password
   interval_seconds: 10
   consider_home: 21
+  
+- platform: owntracks
+  max_gps_accuracy: 300

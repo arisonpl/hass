@@ -45,7 +45,7 @@ discovery:
 conversation:
 
 # Enables support for tracking state changes over time
-history:
+history: !include ./configuration/history.yaml
 
 # View all events in a logbook
 logbook:
@@ -69,6 +69,7 @@ tts:
       # name: Listen to Music via Headphones
       # initial: off
 
+automation: !include_dir_merge_list automation
 group: !include ./configuration/group.yaml
 ifttt: !include ./configuration/ifttt.yaml
 light: !include ./configuration/light.yaml
@@ -79,14 +80,15 @@ device_tracker: !include ./configuration/device_tracker.yaml
 media_player: !include ./configuration/media_player.yaml
 input_select: !include ./configuration/input_select.yaml
 input_boolean: !include ./configuration/input_boolean.yaml
-#input_slider: !include ./configuration/input_slider.yaml
+input_number: !include ./configuration/input_number.yaml
 sensor: !include_dir_merge_list sensors/sensor
 binary_sensor: !include_dir_merge_list sensors/binary
 emulated_hue: !include ./configuration/emulated_hue.yaml
 shell_command: !include ./configuration/shell_command.yaml
 switch: !include ./configuration/switch.yaml
-automation: !include_dir_merge_list automation
 script: !include_dir_merge_list scripts
 notify: !include ./configuration/notify.yaml
 telegram_bot: !include ./configuration/telegram.yaml
+alert: !include ./configuration/alerts.yaml
+mqtt: !include ./configuration/mqtt.yaml
 

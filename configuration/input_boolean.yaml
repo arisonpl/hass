@@ -1,3 +1,13 @@
 mute_gateway_sounds:
   name: Mute Xiaomi Gateway
   icon: mdi:music-off
+  
+guard_home: 
+  name: Turn on/off guard mode
+  initial: off
+  icon: mdi:security-home
+  
+sleep_mode:
+  name: Turn on/off sleep mode
+  initial: off
+  icon: mdi:sleep

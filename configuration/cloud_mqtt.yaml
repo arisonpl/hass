@@ -1,0 +1,4 @@
+broker: !secret MQTT_SERVER
+port: !secret MQTT_PORT
+username: !secret MQTT_USER
+password: !secret MQTT_PASSWORD

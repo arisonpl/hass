@@ -1,0 +1,34 @@
+- platform: template
+  sensors:
+    marcin_status:
+      value_template: '{{ states.input_select.marcin_status_dropdown.state }}'
+      friendly_name: 'Marcin'
+      entity_id: input_select.marcin_status_dropdown
+    natalia_status:
+      value_template: '{{ states.input_select.natalia_status_dropdown.state }}'
+      friendly_name: 'Natalia'
+      entity_id: input_select.natalia_status_dropdown
+    residents_status:
+      friendly_name: Residents
+      value_template: >-
+        {% if is_state('sensor.marcin_status', 'Home') or is_state('sensor.natalia_status', 'Home') %}
+          Home
+        {% elif is_state('sensor.marcin_status', 'Just Arrived') or is_state('sensor.natalia_status', 'Just Arrived') %}
+          Just Arrived
+        {% elif is_state('sensor.marcin_status', 'Just Left') and is_state('sensor.natalia_status', 'Just Left') %}
+          Just Left
+        {% elif is_state('sensor.marcin_status', 'Away') and is_state('sensor.natalia_status', 'Away') %}
+          Away
+        {% elif is_state('sensor.marcin_status', 'Extended Away') and is_state('sensor.natalia_status', 'Extended Away') %}
+          Extended Away
+        {% endif %}
+        
+- platform: google_geocode
+  name: Marcin's location
+  origin: device_tracker.marcin_owntrack
+  options: street, street_number, city
+            
+- platform: google_geocode
+  name: Natalia's location
+  origin: device_tracker.natalia_owntrack
+  options: street, street_number, city

@@ -2,12 +2,16 @@
   entities:
     group.living_room_lights:
       state: on
-      brightness: 150
+      brightness: 200
       transition: 2
       color_temp: 230
+    light.pc_leds:
+      state: on
+      brightness: 120
+      rgb_color: [165,193,255]
 - name: Turn Off
   entities:
-    group.living_room_lights:
+    group.all_lights:
       state: off      
       transition: 2
 - name: Watch Movie
@@ -17,3 +21,8 @@
       brightness: 70
       transition: 2
       rgb_color: [93,131,255]
+    light.pc_leds:
+      state: on
+      brightness: 70
+      rgb_color: [93,131,255]
+      

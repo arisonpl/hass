@@ -1,3 +1,19 @@
+# scenes:
+  # name: Scenes
+  # view: no
+  # entities:
+    # - scene.default
+    # - scene.watch_movie
+    # - scene.turn_off
+    
+config:
+  name: Configuration
+  view: no
+  enities:
+    - input_boolean.mute_gateway_sounds
+    - input_boolean.sleep_mode
+    - input_boolean.guard_home
+
 living_room_lights:
   name: Living Room
   view: no
@@ -13,10 +29,8 @@ lights:
     - group.living_room_lights
     - light.kitchen
     - light.bedroom
-    - light.hallway
-    - light.desk_lamp
     - light.pc_leds
-    - input_number.pc_leds_animation_speed
+    - input_slider.pc_leds_animation_speed
     - switch.fluxer
     - sensor.illumination_f0b429aa04f0
 
@@ -36,17 +50,23 @@ weather:
     - sensor.weather_wind_speed
     - sensor.weather_precipitation
 
-    
-presence:
-  name: Presence
+tracker_marcin:
+  name: Marcin
   entities:
-    # - group.tracker_marcin
-    # - group.tracker_natalia
-    - sensor.residents_status
-    - sensor.marcin_status
-    # - sensor.marcins_location
-    - sensor.natalia_status
-    # - sensor.natalias_location
+    - device_tracker.xiaomimi5
+#    - device_tracker.marcin_marcinmi5
+    
+tracker_natalia:
+  name: Natalia
+  entities:
+    - device_tracker.natalia
+#    - device_tracker.natalia_nataliami5
+    
+residents:
+  name: Residents
+  entities:
+    - device_tracker.natalia
+    - device_tracker.xiaomimi5
     
 remote:
   name: Remote
@@ -118,49 +138,30 @@ sensors_hidden:
     - sensor.living_room_tv_source
     - sensor.pressure_inside
     
-config:
-  name: Configuration
-  view: no
-  entities:
-    - input_boolean.mute_gateway_sounds
-    - input_boolean.sleep_mode
-    - input_boolean.guard_home
-    
-scenes:
-  name: Scenes
-  view: no
-  entities:
-    - scene.default
-    - scene.turn_off
-    - scene.watch_movie
-    
-default_view:
-  name: Main
-  view: yes
-  entities:
-   - group.lights
-   - group.weather
-   - group.presence
-   - group.remote
-   - group.power
-   - group.htpc
-   - group.sensors
-   - group.time
-   - group.scenes
-   - group.config
+# main_view:
+  # name: Main
+  # view: yes
+  # entities:
+   # - group.lights
+   # - group.weather
+   # - group.residents
+   # - group.remote
+   # - group.power
+   # - group.htpc
+   # - group.sensors
+   # - group.time
+   # - groups.scene
    
-media_view:
-  name: Media
-  view: yes
-  entities:
-    - media_player.living_room_tv
-    - media_player.salon
-    - media_player.kodishieldtv
-   
-admin_view:
-  name: Admin
-  view: yes
-  entities:
-    - group.battery_sensors
-    - group.all_automations
+# admin_view:
+  # name: Admin
+  # view: yes
+  # entities:
+    # - group.battery_sensors
     
+# media_view:
+  # name: Media
+  # view: yes
+  # entities:
+    # - media_player.living_room_tv
+    # - media_player.salon
+    # - media_player.kodishieldtv

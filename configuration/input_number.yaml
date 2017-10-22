@@ -12,3 +12,4 @@ pc_leds_animation_speed:
   min: 1
   max: 150
   step: 10
+  mode: slider

@@ -44,10 +44,6 @@ sensor.yr_temperature:
 sensor.yr_wind_speed:
   friendly_name: Wind speed
 
-device_tracker.xiaomimi5:
-  friendly_name: Marcin
-device_tracker.natalia_mi5:
-  friendly_name: Natalia
  
 # Hide not needed tracked devices
 device_tracker.harmonyhub:
@@ -74,21 +70,68 @@ device_tracker.hpspectre360:
   hidden: true
 device_tracker.tp_link_wifi_dongle:
   hidden: true
+device_tracker.kindle_classic:
+  hidden: true
+device_tracker.kindle_touch:
+  hidden: true
+  
+binary_sensor.front_door_open_for_1mins:
+  hidden: true
+  
+sensor.since_last_boot_templated:
+  hidden: true
   
 group.living_room_lights:
   hidden: false
 light.living_room_1:
-  emulated_hue: true
+  emulated_hue_hidden: true
   emulated_hue_name: "Living Room Light 1"
 light.living_room_2:
-  emulated_hue: true
+  emulated_hue_hidden: true
   emulated_hue_name: "Living Room Light 2"
 light.living_room_3:
-  emulated_hue: true
+  emulated_hue_hidden: true
   emulated_hue_name: "Living Room Light 3"
+light.pc_leds:
+  emulated_hue_hidden: true
+  emulated_hue_name: "PC LEDs"
+light.hallway:
+  emulated_hue_hidden: true
+  emulated_hue_name: "Hallway Light"
+  friendly_name: "Hallway"
   
-group.all_automation:
-  hidden: true
+group.all_automations:
+  hidden: false
   
 group.battery_sensors_low:
   ignored: true
+  
+group.sensors_hidden:
+  ignored: true
+  
+sensor.weather_symbol:
+  friendly_name: "Symbol"
+
+sensor.weather_temperature:
+  friendly_name: "Predicted Temperature"
+  
+sensor.weather_pressure:
+  friendly_name: "Predicted Pressure"
+  
+sensor.weather_humidity:
+  friendly_name: "Predicted Humidity"
+  
+sensor.weather_wind_speed:
+  friendly_name: "Predicted Wind Speed"
+  
+sensor.weather_precipitation:
+  friendly_name: "Predicted Rain"
+  
+switch.tv_strip:
+  emulated_hue_hidden: true
+  emulated_hue_name: "TV Strip"
+  
+switch.pc_strip:
+  emulated_hue_hidden: true
+  emulated_hue_name: "PC Strip"
+  

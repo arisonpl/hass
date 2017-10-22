@@ -1,0 +1,5 @@
+# - platform: template
+  # sensors:
+    # weather_symbol_custom:
+      # entity_picture: '{{ states.sensor.weather_symbol.attributes["entity_picture"] | string }}'
+      # value_template: '{{ brak }}'

@@ -14,3 +14,9 @@
 secrets.yaml
 known_devices.yaml
 configuration/shell_command.yaml
+webostv.conf
+plex.conf
+letsencrypt.txt
+html5_push_registrations.conf
+commands.txt
+.spotify-token-cache

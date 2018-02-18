@@ -23,9 +23,14 @@ config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  # api_password: !secret http_password
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_certificate_path
+  ssl_key: !secret ssl_key_path
+  base_url: !secret https_url
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
+  login_attempts_threshold: 5
+  #base_url: !secret IP
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -45,11 +50,36 @@ discovery:
 conversation:
 
 # Enables support for tracking state changes over time
-history: !include ./configuration/history.yaml
-
+history:
+  include:
+    domains:
+      - automation
+      - binary_sensor
+      - fan
+      - input_boolean
+      - input_number
+      - light
+      - sensor
+      - switch
+      
+recorder:
+  purge_interval: 2
+  purge_keep_days: 2
+  db_url: !secret dbcon
+  
 # View all events in a logbook
 logbook:
 
+logger:
+  default: warning
+  logs:
+    homeassistant.components.automation: warning
+    homeassistant.components.script: error
+    homeassistant.components.xiaomi: error
+    homeassistant.components.sensor.xiaomi: error
+    homeassistant.components.switch.xiaomi: error
+    homeassistant.components.binary_sensor: warning
+    
 # Track the sun
 sun:
 
@@ -69,6 +99,10 @@ tts:
       # name: Listen to Music via Headphones
       # initial: off
 
+ffmpeg:
+  ffmpeg_bin: /data/data/com.termux/files/usr/bin/ffmpeg
+ 
+alexa: !include ./configuration/alexa.yaml 
 automation: !include_dir_merge_list automation
 group: !include ./configuration/group.yaml
 ifttt: !include ./configuration/ifttt.yaml
@@ -83,7 +117,7 @@ input_boolean: !include ./configuration/input_boolean.yaml
 input_number: !include ./configuration/input_number.yaml
 sensor: !include_dir_merge_list sensors/sensor
 binary_sensor: !include_dir_merge_list sensors/binary
-emulated_hue: !include ./configuration/emulated_hue.yaml
+#emulated_hue: !include ./configuration/emulated_hue.yaml
 shell_command: !include ./configuration/shell_command.yaml
 switch: !include ./configuration/switch.yaml
 script: !include_dir_merge_list scripts
@@ -91,4 +125,6 @@ notify: !include ./configuration/notify.yaml
 telegram_bot: !include ./configuration/telegram.yaml
 alert: !include ./configuration/alerts.yaml
 mqtt: !include ./configuration/mqtt.yaml
-
+zone: !include ./configuration/zones.yaml
+google_assistant: !include ./configuration/google_assistant.yaml
+camera: !include ./configuration/camera.yaml

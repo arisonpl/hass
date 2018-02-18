@@ -1,0 +1,23 @@
+- name: home
+  latitude: !secret latitude
+  longitude: !secret longtitude
+  radius: 100
+  icon: mdi:account-multiple
+  
+- name: living-room
+  latitude: !secret latitude
+  longitude: !secret longtitude
+  radius: 100
+  icon: mdi:account-multiple
+  
+- name: bedroom
+  latitude: !secret latitude
+  longitude: !secret longtitude
+  radius: 100
+  icon: mdi:account-multiple
+  
+- name: kitchen
+  latitude: !secret latitude
+  longitude: !secret longtitude
+  radius: 100
+  icon: mdi:account-multiple

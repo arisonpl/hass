@@ -1,0 +1,13 @@
+brighten_light_bedroom:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.bedroom_dim
+      state: 'off'
+    - service: light.turn_on
+      entity_id: light.bedroom
+      data_template:
+        brightness: '{{states.light.bedroom.attributes.brightness + 10}}'
+    - service: script.turn_off
+      entity_id: script.brighten_light_bedroom
+    - service: script.turn_on
+      entity_id: script.brighten_light_bedroom

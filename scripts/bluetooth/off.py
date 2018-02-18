@@ -1,0 +1,2 @@
+import requests
+requests.get('https://autoremotejoaomgcd.appspot.com/sendmessage?key=APA91bFq9JmPfwl1DTFAAUXPP1bkwb238ioivaKy0T9CfwOZys4zseRqpwVAnYttWgxLvwK9P171nBsSMeDuL-j6oZFwQB4svXRuQ9u0D21g1YFdlIC7x3dtOD7aPSlvQrM9LVzW7UV3&message=of&password=M2r8i7ZT')

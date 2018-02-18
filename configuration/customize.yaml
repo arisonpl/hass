@@ -4,6 +4,8 @@ binary_sensor.switch_158d00017141f7:
   friendly_name: Doorbell Switch
 binary_sensor.door_window_sensor_158d0001002bf2:
   friendly_name: Door Sensor
+binary_sensor.door_window_sensor_158d0001dacdd0:
+  friendly_name: Hallway Cabinet Sensor
 binary_sensor.motion_sensor_158d00012965b6:
   friendly_name: Motion Sensor 1
 binary_sensor.motion_sensor_158d0000f954cf:
@@ -82,22 +84,31 @@ sensor.since_last_boot_templated:
   hidden: true
   
 group.living_room_lights:
+  emulated_hue_hidden: false
+  emulated_hue_name: "Living Room"
   hidden: false
-light.living_room_1:
-  emulated_hue_hidden: true
-  emulated_hue_name: "Living Room Light 1"
-light.living_room_2:
-  emulated_hue_hidden: true
-  emulated_hue_name: "Living Room Light 2"
-light.living_room_3:
-  emulated_hue_hidden: true
-  emulated_hue_name: "Living Room Light 3"
+group.kitchen_lights:
+  emulated_hue_hidden: false
+  emulated_hue_name: "Kitchen"
+  hidden: false
+light.bedroom:
+  emulated_hue_hidden: false
+  emulated_hue_name: "Bedroom"
+#light.living_room_1:
+#  emulated_hue_hidden: false
+#  emulated_hue_name: "Living Room Light 1"
+#light.living_room_2:
+#  emulated_hue_hidden: false
+#  emulated_hue_name: "Living Room Light 2"
+#light.living_room_3:
+#  emulated_hue_hidden: false
+#  emulated_hue_name: "Living Room Light 3"
 light.pc_leds:
-  emulated_hue_hidden: true
+  emulated_hue_hidden: false
   emulated_hue_name: "PC LEDs"
 light.hallway:
-  emulated_hue_hidden: true
-  emulated_hue_name: "Hallway Light"
+  emulated_hue_hidden: false
+  emulated_hue_name: "Hallway"
   friendly_name: "Hallway"
   
 group.all_automations:
@@ -128,10 +139,24 @@ sensor.weather_precipitation:
   friendly_name: "Predicted Rain"
   
 switch.tv_strip:
-  emulated_hue_hidden: true
+  emulated_hue_hidden: false
   emulated_hue_name: "TV Strip"
   
 switch.pc_strip:
-  emulated_hue_hidden: true
+  emulated_hue_hidden: false
   emulated_hue_name: "PC Strip"
   
+switch.pc:
+  emulated_hue_hidden: false
+  emulated_hue_name: "PC"
+  
+input_select.marcin_status_dropdown:
+  persistent: true
+input_select.natalia_status_dropdown:
+  persistent: true
+  
+switch.bluetooth_shield:
+  friendly_name: Shield - sound via bluetooth
+  device_class: sound
+  assumed_state: false
+  icon: mdi:bluetooth-audio

@@ -26,12 +26,12 @@
       entity_id: input_select.marcin_status_dropdown
       to: 'Just Arrived'
       for:
-        minutes: 1
+        minutes: 2
     - platform: state
       entity_id: input_select.natalia_status_dropdown
       to: 'Just Arrived'
       for:
-        minutes: 1
+        minutes: 2
     - platform: state
       entity_id: input_select.marcin_status_dropdown
       from: 'Just Left'
@@ -40,59 +40,58 @@
       entity_id: input_select.natalia_status_dropdown
       from: 'Just Left'
       to: 'Just Arrived'
-    - platform: state
-      entity_id: sensor.marcin_active_tracker
-      to: 'None'
-    - platform: state
-      entity_id: sensor.natalia_active_tracker
-      to: 'None'
   condition:
   action:
     - service: input_select.select_option
       data_template:
         entity_id: >
-          {% if trigger.entity_id == 'input_select.marcin_status_dropdown' and is_state('sensor.marcin_active_tracker', 'None') %}
+          {% if trigger.entity_id == 'input_select.marcin_status_dropdown' %}
             input_select.marcin_status_dropdown
-          {% elif trigger.entity_id == 'input_select.natalia_status_dropdown' and is_state('sensor.natalia_active_tracker', 'None') %}
+          {% else %}
             input_select.natalia_status_dropdown
-          {% elif (trigger.entity_id == 'sensor.marcin_active_tracker') and is_state('binary_sensor.marcin_home', 'on') %}
-            input_select.marcin_status_dropdown   
-          {% elif (trigger.entity_id == 'sensor.natalia_active_tracker') and is_state('binary_sensor.natalia_home', 'on') %}
-            input_select.natalia_status_dropdown               
           {% endif %}
         option: Home
  #LIVING ROOM
 - alias: Mark resident position to living room
   trigger:
     - platform: state
-      entity_id: sensor.marcin_location
-      to: 'living-room'
-    - platform: state
-      entity_id: sensor.natalia_location
-      to: 'living-room'
-    - platform: state
       entity_id: input_select.marcin_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1
+        seconds: 30
     - platform: state
       entity_id: input_select.natalia_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1      
+        seconds: 30
+    - platform: state
+      entity_id: binary_sensor.marcin_living_room
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.natalia_living_room
+      to: 'on'
   condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.residents_status
+      state: 'Home'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.marcin_living_room
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.natalia_living_room
+          state: 'on'
   action:
     - service: input_select.select_option
       data_template:
         entity_id: >
-          {% if ( (trigger.entity_id == 'sensor.marcin_location') and is_state('binary_sensor.marcin_home', 'on') ) %}
+          {% if ( (trigger.entity_id == 'input_select.marcin_status_dropdown') or (trigger.entity_id == 'binary_sensor.marcin_living_room') ) %}
             input_select.marcin_status_dropdown
-          {% elif ( (trigger.entity_id == 'sensor.natalia_location') and is_state('binary_sensor.natalia_home', 'on') ) %}
+          {% elif ( (trigger.entity_id == 'input_select.natalia_status_dropdown') or (trigger.entity_id == 'binary_sensor.natalia_living_room') ) %}
             input_select.natalia_status_dropdown
-          {% elif trigger.entity_id == 'input_select.marcin_status_dropdown' and not is_state('sensor.marcin_active_tracker', 'None') and is_state('sensor.marcin_location', 'living-room') %}
-            input_select.marcin_status_dropdown
-          {% elif trigger.entity_id == 'input_select.natalia_status_dropdown' and not is_state('sensor.natalia_active_tracker', 'None') and is_state('sensor.natalia_location', 'living-room') %}
-            input_select.natalia_status_dropdown            
           {% endif %}
         option: Living Room
 
@@ -100,68 +99,86 @@
 - alias: Mark resident position to kitchen
   trigger:
     - platform: state
-      entity_id: sensor.marcin_location
-      to: 'kitchen'
-    - platform: state
-      entity_id: sensor.natalia_location
-      to: 'kitchen'
-    - platform: state
       entity_id: input_select.marcin_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1
+        seconds: 30
     - platform: state
       entity_id: input_select.natalia_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1         
+        seconds: 30
+    - platform: state
+      entity_id: binary_sensor.marcin_kitchen
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.natalia_kitchen
+      to: 'on'
   condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.residents_status
+      state: 'Home'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.marcin_kitchen
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.natalia_kitchen
+          state: 'on'
   action:
     - service: input_select.select_option
       data_template:
         entity_id: >
-          {% if ( (trigger.entity_id == 'sensor.marcin_location') and is_state('binary_sensor.marcin_home', 'on') ) %}
+          {% if ( (trigger.entity_id == 'input_select.marcin_status_dropdown') or (trigger.entity_id == 'binary_sensor.marcin_kitchen') ) %}
             input_select.marcin_status_dropdown
-          {% elif ( (trigger.entity_id == 'sensor.natalia_location') and is_state('binary_sensor.natalia_home', 'on') ) %}
+          {% elif ( (trigger.entity_id == 'input_select.natalia_status_dropdown') or (trigger.entity_id == 'binary_sensor.natalia_kitchen') ) %}
             input_select.natalia_status_dropdown
-          {% elif trigger.entity_id == 'input_select.marcin_status_dropdown' and not is_state('sensor.marcin_active_tracker', 'None') and is_state('sensor.marcin_location', 'kitchen') %}
-            input_select.marcin_status_dropdown
-          {% elif trigger.entity_id == 'input_select.natalia_status_dropdown' and not is_state('sensor.natalia_active_tracker', 'None') and is_state('sensor.natalia_location', 'kitchen') %}
-            input_select.natalia_status_dropdown  
           {% endif %}
         option: Kitchen
 #BEDROOM       
-- alias: Mark resident position to bedroom
+- alias: Mark resident position to kitchen
   trigger:
     - platform: state
-      entity_id: sensor.marcin_location
-      to: 'bedroom'
-    - platform: state
-      entity_id: sensor.natalia_location
-      to: 'bedroom'
-    - platform: state
       entity_id: input_select.marcin_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1
+        seconds: 30
     - platform: state
       entity_id: input_select.natalia_status_dropdown
-      to: 'Just Arrived'
+      to: 'Home'
       for:
-        minutes: 1         
+        seconds: 30
+    - platform: state
+      entity_id: binary_sensor.marcin_bedroom
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.natalia_bedroom
+      to: 'on'
   condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: sensor.residents_status
+      state: 'Home'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.marcin_bedroom
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.natalia_bedroom
+          state: 'on'
   action:
     - service: input_select.select_option
       data_template:
         entity_id: >
-          {% if ( (trigger.entity_id == 'sensor.marcin_location') and is_state('binary_sensor.marcin_home', 'on') ) %}
+          {% if ( (trigger.entity_id == 'input_select.marcin_status_dropdown') or (trigger.entity_id == 'binary_sensor.marcin_bedroom') ) %}
             input_select.marcin_status_dropdown
-          {% elif ( (trigger.entity_id == 'sensor.natalia_location') and is_state('binary_sensor.natalia_home', 'on') ) %}
+          {% elif ( (trigger.entity_id == 'input_select.natalia_status_dropdown') or (trigger.entity_id == 'binary_sensor.natalia_bedroom') ) %}
             input_select.natalia_status_dropdown
-          {% elif trigger.entity_id == 'input_select.marcin_status_dropdown' and not is_state('sensor.marcin_active_tracker', 'None') and is_state('sensor.marcin_location', 'bedroom') %}
-            input_select.marcin_status_dropdown
-          {% elif trigger.entity_id == 'input_select.natalia_status_dropdown' and not is_state('sensor.natalia_active_tracker', 'None') and is_state('sensor.natalia_location', 'bedroom') %}
-            input_select.natalia_status_dropdown              
           {% endif %}
         option: Bedroom
         
@@ -232,7 +249,3 @@
             input_select.natalia_status_dropdown
           {% endif %}
         option: Extended Away
-        
-       
-  
-      

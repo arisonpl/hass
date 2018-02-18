@@ -5,5 +5,9 @@
   interval_seconds: 10
   consider_home: 21
   
-- platform: owntracks
-  max_gps_accuracy: 300
+# - platform: owntracks
+  # max_gps_accuracy: 300
+  
+- platform: owntracks_http
+  max_gps_accuracy: 200
+  waypoints: False

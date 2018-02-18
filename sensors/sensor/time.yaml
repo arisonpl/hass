@@ -1,1 +1,2 @@
-- platform: time_date
+#- platform: time_date
+- platform: uptime

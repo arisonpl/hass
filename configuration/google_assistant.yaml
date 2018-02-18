@@ -1,0 +1,7 @@
+project_id: hass-arison
+client_id: !secret g_assistant_client_id
+access_token: !secret g_assistant_access_token
+exposed_domains:
+  - switch
+  - light
+  - group

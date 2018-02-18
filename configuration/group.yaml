@@ -6,16 +6,28 @@ living_room_lights:
     - light.living_room_2
     - light.living_room_3
 
+kitchen_lights:
+  name: Kitchen
+  view: no
+  entities:
+    - light.kitchen
+    - light.kitchen_leds
+
 lights:
   name: Lights
   view: no
   entities:
     - group.living_room_lights
     - light.kitchen
+    - light.kitchen_leds
+    - automation.turn_off_light_in_kitchen_when_motion_not_detected
     - light.bedroom
+#    - input_boolean.bedroom_dim
     - light.hallway
     - light.desk_lamp
     - light.pc_leds
+    - light.pc_case_leds
+    - light.pc_cpu_leds
     - input_number.pc_leds_animation_speed
     - switch.fluxer
     - sensor.illumination_f0b429aa04f0
@@ -44,9 +56,9 @@ presence:
     # - group.tracker_natalia
     - sensor.residents_status
     - sensor.marcin_status
-    # - sensor.marcins_location
     - sensor.natalia_status
-    # - sensor.natalias_location
+    - input_select.marcin_tracker_dropdown    
+    - input_select.natalia_tracker_dropdown
     
 remote:
   name: Remote
@@ -54,11 +66,12 @@ remote:
     - remote.harmony_hub
     - sensor.current_activity
     - input_select.harmony
+    - switch.bluetooth_shield
 
 htpc:
-  name: HTPC Power Management
+  name: PC Power Management
   entities:
-    - switch.htpc_state
+    - switch.pc
     - input_select.htpc_options
 
 battery_sensors:
@@ -99,11 +112,15 @@ sensors:
     - binary_sensor.switch_158d00017141f7
     - binary_sensor.switch_158d0000fd2037
     - binary_sensor.door_window_sensor_158d0001002bf2
+    - binary_sensor.door_window_sensor_158d0001dacdd0
+    - sensor.motion_sensor_kitchen
+    - sensor.motion_sensor_2_kitchen    
     
 time:
   name: Time
   entities:
     - sensor.time
+    - sensor.uptime
     
 sensors_hidden:
   name: Sensors hidden
@@ -134,6 +151,12 @@ scenes:
     - scene.turn_off
     - scene.watch_movie
     
+cameras:
+  name: Camera
+  view: no
+  entities:
+    - camera.mijia_1080p_home
+    
 default_view:
   name: Main
   view: yes
@@ -148,6 +171,7 @@ default_view:
    - group.time
    - group.scenes
    - group.config
+   - group.cameras
    
 media_view:
   name: Media
@@ -156,6 +180,7 @@ media_view:
     - media_player.living_room_tv
     - media_player.salon
     - media_player.kodishieldtv
+    - media_player.spotify
    
 admin_view:
   name: Admin

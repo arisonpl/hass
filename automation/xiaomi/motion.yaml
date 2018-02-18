@@ -1,61 +1,168 @@
-- id: motion_detected_kitchen_light
-  alias: Turn on light in Kitchen when motion detected
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00012965b6
-      from: 'off'
-      to: 'on'
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.sleep_mode
-      state: 'off'
-  action:
-    - service: light.turn_on
-      entity_id: light.kitchen
+# - id: motion_detected_kitchen_light
+  # alias: Turn on light in Kitchen when motion detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.motion_sensor_158d00012965b6
+      # from: 'off'
+      # to: 'on'
+    # - platform: state
+      # entity_id: binary_sensor.marcin_kitchen
+      # to: 'on'
+    # - platform: state
+      # entity_id: binary_sensor.natalia_kitchen
+      # to: 'on'
+  # condition:
+    # - condition: state
+      # entity_id: sun.sun
+      # state: 'below_horizon'
+    # - condition: state
+      # entity_id: input_boolean.sleep_mode
+      # state: 'off'
+    # - condition: state
+      # entity_id: sensor.residents_status
+      # state: 'Home'
+  # action:
+    # - service: light.turn_on
+      # entity_id: light.kitchen
 
-- id: motion_not_detected_kitchen_light
-  alias: Turn off light in Kitchen when motion detected
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00012965b6
-      to: 'off'
-      for:
-        minutes: 1
-  action:
-    - service: light.turn_off
-      entity_id: light.kitchen
+# - id: motion_not_detected_kitchen_light
+  # alias: Turn off light in Kitchen when motion not detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.motion_sensor_158d00012965b6
+      # to: 'off'
+      # for:
+        # minutes: 1
+  # condition:
+    # - condition: state
+      # entity_id: binary_sensor.marcin_kitchen
+      # state: 'off'
+    # - condition: state
+      # entity_id: binary_sensor.natalia_kitchen
+      # state: 'off'
+  # action:
+    # - service: light.turn_off
+      # entity_id: light.kitchen
+
+# - id: presence_not_detected_kitchen_light
+  # alias: Turn off light in Kitchen when presence not detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.motion_sensor_158d00012965b6
+      # to: 'off'
+      # for:
+        # seconds: 120  
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_living_room', 'on') and is_state('binary_sensor.natalia_living_room', 'on') %}true{% endif %}"
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_bedroom', 'on') and is_state('binary_sensor.natalia_bedroom', 'on') %}true{% endif %}"
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_living_room', 'on') and is_state('binary_sensor.natalia_bedroom', 'on') %}true{% endif %}"    
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_bedroom', 'on') and is_state('binary_sensor.natalia_living_room', 'on') %}true{% endif %}"    
+  # condition:
+    # condition: and
+    # conditions:
+      # - condition: state
+        # entity_id: binary_sensor.marcin_kitchen
+        # state: 'off'
+      # - condition: state
+        # entity_id: binary_sensor.natalia_kitchen
+        # state: 'off'
+      # - condition: state 
+        # entity_id: binary_sensor.motion_sensor_158d00012965b6
+        # state: 'off'
+  # action:
+    # - service: light.turn_off
+      # entity_id: light.kitchen     
       
-- id: motion_detected_bedroom_light
-  alias: Turn on light in Bedroom when motion detected
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0000f954cf
-      from: 'off'
-      to: 'on'
-  condition:
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    - condition: state
-      entity_id: input_boolean.sleep_mode
-      state: 'off'
-  action:
-    - service: light.turn_on
-      entity_id: light.bedroom
+# - id: presence_not_detected_kitchen_light
+  # alias: Turn off light in Kitchen when presence not detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.marcin_kitchen
+      # to: 'off'
+      # for:
+        # minutes: 1
+    # - platform: state
+      # entity_id: binary_sensor.natalia_kitchen
+      # to: 'off'
+      # for:
+        # minutes: 1
+  # condition:
+    # condition: and
+    # conditions:
+      # - condition: state
+        # entity_id: binary_sensor.marcin_kitchen
+        # state: 'off'
+      # - condition: state
+        # entity_id: binary_sensor.natalia_kitchen
+        # state: 'off'
+      # - condition: state
+        # entity_id: binary_sensor.motion_sensor_158d00012965b6
+        # state: 'off'
+  # action:
+    # - service: light.turn_off
+      # entity_id: light.kitchen
+      
+# - id: motion_detected_bedroom_light
+  # alias: Turn on light in Bedroom when motion detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.motion_sensor_158d0000f954cf
+      # from: 'off'
+      # to: 'on'
+    # - platform: state
+      # entity_id: binary_sensor.marcin_kitchen
+      # to: 'on'
+    # - platform: state
+      # entity_id: binary_sensor.natalia_kitchen
+      # to: 'on'
+  # condition:
+    # - condition: state
+      # entity_id: sun.sun
+      # state: 'below_horizon'
+    # - condition: state
+      # entity_id: input_boolean.sleep_mode
+      # state: 'off'
+    # - condition: state
+      # entity_id: sensor.residents_status
+      # state: 'Home'
+  # action:
+    # - service: light.turn_on
+      # entity_id: light.bedroom
 
-- id: motion_not_detected_bedroom_light
-  alias: Turn off light in Bedroom when motion detected
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0000f954cf
-      to: 'off'
-      for:
-        minutes: 5
-  action:
-    - service: light.turn_off
-      entity_id: light.bedroom      
+# - id: presence_not_detected_bedroom_light
+  # alias: Turn off light in Bedroom when presence not detected
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.motion_sensor_158d0000f954cf
+      # to: 'off'
+      # for:
+        # seconds: 120  
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_living_room', 'on') and is_state('binary_sensor.natalia_living_room', 'on') %}true{% endif %}"
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_kitchen', 'on') and is_state('binary_sensor.natalia_kitchen', 'on') %}true{% endif %}"
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_living_room', 'on') and is_state('binary_sensor.natalia_kitchen', 'on') %}true{% endif %}" 
+    # - platform: template
+      # value_template: "{% if is_state('binary_sensor.marcin_kitchen', 'on') and is_state('binary_sensor.natalia_living_room', 'on') %}true{% endif %}"
+  # condition:
+    # condition: and
+    # conditions:
+      # - condition: state
+        # entity_id: binary_sensor.marcin_bedroom
+        # state: 'off'
+      # - condition: state
+        # entity_id: binary_sensor.natalia_bedroom
+        # state: 'off'
+      # - condition: state 
+        # entity_id: binary_sensor.motion_sensor_158d0000f954cf
+        # state: 'off'
+  # action:
+    # - service: light.turn_off
+      # entity_id: light.bedroom
+
       
   

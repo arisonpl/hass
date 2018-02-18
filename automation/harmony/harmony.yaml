@@ -9,8 +9,8 @@
       entity_id: remote.harmony_hub
       data_template:
         activity: >
-          {% if is_state("input_select.harmony", "Watch Smart TV") %}
-            28323252
+          {% if is_state("input_select.harmony", "Watch TV") %}
+            31788180
           {% elif is_state("input_select.harmony", "Watch Shield TV") %}
             27771600
           {% elif is_state("input_select.harmony", "Listen to Music via Headphones") %}

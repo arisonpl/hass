@@ -1,0 +1,3 @@
+- platform: ffmpeg
+  input: rtsp://192.168.0.150/live/ch00_0
+  name: Mijia 1080p Home

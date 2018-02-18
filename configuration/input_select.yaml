@@ -2,7 +2,7 @@ harmony:
   name: Harmony
   options:
     - Select Activity
-    - Watch Smart TV
+    - Watch TV
     - Watch Shield TV
     - Listen to Music via Headphones
     - Listen to Music via Speakers
@@ -10,7 +10,7 @@ harmony:
   icon: mdi:monitor
   
 htpc_options:
-  name: HTPC Power Options
+  name: PC Power Options
   options:
     - Restart
     - Shutdown
@@ -28,6 +28,9 @@ marcin_status_dropdown:
     - Just Left
     - Away
     - Extended Away
+    - Living Room
+    - Bedroom
+    - Kitchen
   initial: Home
   
 natalia_status_dropdown:
@@ -38,4 +41,28 @@ natalia_status_dropdown:
     - Just Left
     - Away
     - Extended Away
+    - Living Room
+    - Bedroom
+    - Kitchen
   initial: Home
+  
+marcin_tracker_dropdown:
+  name: Marcin's active tracker
+  options:
+    - None
+    - Misfit
+    - MiBand
+    - Nut1
+    - Nut2
+  initial: None
+
+natalia_tracker_dropdown:
+  name: Natlia's active tracker
+  options:
+    - None
+    - Misfit
+    - MiBand
+    - Nut1
+    - Nut2
+  initial: None
+    

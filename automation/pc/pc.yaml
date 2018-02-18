@@ -29,13 +29,37 @@
     entity_id: input_select.htpc_options
     to: "Sleep"
   - platform: state
-    entity_id: switch.htpc_state
+    entity_id: switch.pc
     to: "off" 
   action:
   - service: shell_command.sleep_htpc
   - service: notify.livingroom_tv
     data:
       message: "HTPC goes to sleep"
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "juggle"
+  - delay: 00:00:04
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "solid"
+      
+- id: htpc_sleep_light_effect
+  alias: Light effect on HTPC sleep
+  trigger:
+  - platform: state
+    entity_id: input_select.htpc_options
+    to: "Sleep"
+  - platform: state
+    entity_id: switch.pc
+    to: "off" 
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
   - service: light.turn_on
     data:
       entity_id: light.pc_leds
@@ -62,7 +86,7 @@
   alias: HTPC turned on
   trigger:
   - platform: state
-    entity_id: switch.htpc_state
+    entity_id: switch.pc
     to: "on"
   action:
   - service: notify.livingroom_tv
@@ -73,6 +97,27 @@
       entity_id: light.pc_leds
       effect: "cyclon rainbow"
   - delay: 00:00:20
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "solid"
+      
+- id: htpc_turn_on_light_effect
+  alias: Light effect on HTPC turn on
+  trigger:
+  - platform: state
+    entity_id: switch.pc
+    to: "on"
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.pc_leds
+      effect: "cyclon rainbow"
+  - delay: 00:00:04
   - service: light.turn_on
     data:
       entity_id: light.pc_leds
@@ -105,11 +150,11 @@
     to: 'idle'
   condition:
   - condition: state
-    entity_id: switch.htpc_state
+    entity_id: switch.pc
     state: 'off'
   action:
   - service: switch.turn_on
-    entity_id: switch.htpc_state
+    entity_id: switch.pc
   - service: notify.livingroom_tv
     data:
       message: "HTPC turning on"

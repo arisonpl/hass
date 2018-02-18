@@ -22,33 +22,4 @@
   action:
     - service: alert.turn_off
       entity_id: alert.front_door
-
-- id: front_door_opened_light_on
-  alias: Turn on hallway light after sunset when door opened
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
-      from: 'off'
-      to: 'on'
-  condition: 
-    - condition: state
-      entity_id: sensor.residents_status
-      state: 'Home'
-    - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-  action:
-    - service: light.turn_on
-      entity_id: light.hallway   
-      
-- id: front_door_opened_light_off
-  alias: Turn off hallway light after sunset when door closed
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
-      to: 'off'
-      for:
-        minutes: 5
-  action:
-    - service: light.turn_off
-      entity_id: light.hallway   
+ 

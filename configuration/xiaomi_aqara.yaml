@@ -1,3 +1,4 @@
 gateways:
    - mac: !secret gateway_mac
      key: !secret gateway_key
+     host: 192.168.0.101

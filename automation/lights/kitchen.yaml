@@ -1,0 +1,86 @@
+- id: motion_detected_kitchen_light
+  alias: Turn on light in Kitchen when motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.motion_sensor_kitchen
+      from: 'Clear'
+      to: 'Detected'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'off'
+    - condition: state
+      entity_id: sensor.residents_status
+      state: 'Home'
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen
+      
+- id: motion_detected_kitchen_leds
+  alias: Turn on leds in Kitchen when motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.motion_sensor_2_kitchen
+      from: 'Clear'
+      to: 'Detected'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'off'
+    - condition: state
+      entity_id: sensor.residents_status
+      state: 'Home'
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen_leds
+      
+      
+- id: motion_not_detected_kitchen_light
+  alias: Turn off light in Kitchen when motion not detected
+  trigger:
+    - platform: state
+      entity_id: sensor.motion_sensor_kitchen
+      to: 'Clear'
+      for:
+        minutes: 2
+    - platform: state
+      entity_id: sensor.motion_sensor_158d00012965b6
+      to: 'Clear'
+      for:
+        minutes: 2        
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.motion_sensor_kitchen
+        state: 'Clear'
+      - condition: state
+        entity_id: sensor.motion_sensor_2_kitchen
+        state: 'Clear'
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen
+      
+- id: motion_not_detected_kitchen_leds
+  alias: Turn off leds in Kitchen when motion not detected
+  trigger:
+    - platform: state
+      entity_id: sensor.motion_sensor_2_kitchen
+      to: 'Clear'
+      for:
+        minutes: 2
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.motion_sensor_2_kitchen
+        state: 'Clear'          
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen_leds

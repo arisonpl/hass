@@ -4,9 +4,6 @@
   - platform: sun
     event: sunset
     offset: "-00:20:00"
-  - platform: state
-    entity_id: input_boolean.sleep_mode
-    to: 'off'
   condition:
   - condition: state
     entity_id: sensor.residents_status
@@ -45,7 +42,7 @@
   trigger:
   - platform: state
     entity_id: sensor.residents_status
-    to: 'Home'
+    to: 'Just Arrived'
   condition:
   - condition: state
     entity_id: sun.sun
@@ -81,6 +78,8 @@
     entity_id: group.lights
   - service: switch.turn_off
     entity_id: switch.fluxer
+    
+
     
 # - id: lights_off_switch
   # alias: Turn off light when switch pressed

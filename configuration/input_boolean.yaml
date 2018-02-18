@@ -11,3 +11,8 @@ sleep_mode:
   name: Turn on/off sleep mode
   initial: off
   icon: mdi:sleep
+  
+
+bedroom_dim:
+  name: Bedroom Dim
+  initial: off

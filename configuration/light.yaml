@@ -16,15 +16,106 @@
   host: 192.168.0.112
   token: !secret xiaomi_philips_token
   
-# - platform: xiaomi_miio
-  # name: Desk Lamp
-  # host: 192.168.0.109
-  # token: !secret philips_desk_lamp
+- platform: xiaomi_miio
+  name: Desk Lamp
+  host: 192.168.0.109
+  token: !secret philips_desk_lamp
       
 - platform: mqtt_json
   name: "PC LEDs"
   state_topic: "hass/pc_leds"
   command_topic: "hass/pc_leds/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+  
+- platform: mqtt_json
+  name: "PC Case LEDs"
+  state_topic: "hass/pc_leds/case"
+  command_topic: "hass/pc_leds/case/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+  
+  
+- platform: mqtt_json
+  name: "PC CPU LEDs"
+  state_topic: "hass/pc_leds/cpu"
+  command_topic: "hass/pc_leds/cpu/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+  
+- platform: mqtt_json
+  name: "Kitchen LEDs"
+  state_topic: "hass/kitchen_leds"
+  command_topic: "hass/kitchen_leds/set"
   effect: true
   effect_list:
     - bpm

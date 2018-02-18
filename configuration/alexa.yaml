@@ -1,0 +1,73 @@
+smart_home:
+  filter:
+    # include_entities:
+    include_domains:
+      - light
+      - switch
+      - media_player
+      - scene
+      - script
+      - group
+    exclude_entities:
+      - switch.fluxer
+      - light.gateway_light_f0b429aa04f0
+      - media_player.living_room_tv
+      - light.pc_case_leds
+      - light.pc_cpu_leds
+      - switch.pc_strip
+      - group.all_automations
+      - group.all_devices
+      - group.all_remotes
+      - group.all_switches
+      - group.cameras
+      - group.config
+      - group.lights
+      - group.default_view
+      - group.media_view
+      - group.htpc
+      - group.power
+      - group.presence
+      - group.remote
+      - group.scenes
+      - group.sensors
+      - group.sensors_hidden
+      - group.sensors_hidden
+      - group.weather
+      - group.battery_sensors
+      - group.battery_sensors_low
+      - group.time
+      - scene.turn_off
+  entity_config:
+    light.kitchen:
+      name: Kitchen Light
+      description: The light in the kitchen
+    media_player.kodishieldtv:
+      name: Kodi
+      description: Kodi player on Shield TV
+    media_player.shield_tv_pro:
+      name: Shield
+      description: Shield TV Pro Media Player
+    group.all_lights:
+      name: Lights
+      description: Turn off all possible lights
+    scene.default:
+      name: Default Scene
+      description: Default Scene Preset
+    scene.watch_movie:
+      name: Movie Scene
+      description: Movie Scene Preset
+      
+flash_briefings:
+  whoishome:
+    - title: Who's at home?
+      text: >
+        {%- if is_state('device_tracker.paulus', 'home') and
+               is_state('device_tracker.anne_therese', 'home') -%}
+          You are both home, you silly
+        {%- else -%}
+          Anne Therese is at {{ states("device_tracker.anne_therese") }}
+          and Paulus is at {{ states("device_tracker.paulus") }}
+        {% endif %}
+    
+
+      

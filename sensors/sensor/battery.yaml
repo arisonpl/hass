@@ -28,7 +28,7 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: binary_sensor.motion_sensor_158d00012965b6
+#      entity_id: binary_sensor.motion_sensor_158d00012965b6
 
 ### Battery level lower than 10% ###
 - platform: template
@@ -67,7 +67,7 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: binary_sensor.motion_sensor_158d0000f954cf
+#      entity_id: binary_sensor.motion_sensor_158d0000f954cf
 
 ### Battery level lower than 10% ###
 - platform: template
@@ -106,7 +106,7 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: binary_sensor.switch_158d0000fd2037
+#      entity_id: binary_sensor.switch_158d0000fd2037
 
 ### Battery level lower than 10% ###
 - platform: template
@@ -145,7 +145,7 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: binary_sensor.switch_158d00017141f7
+#      entity_id: binary_sensor.switch_158d00017141f7
 
 ### Battery level lower than 10% ###
 - platform: template
@@ -184,14 +184,14 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: sensor.temperature_158d00019fdfa8
+#      entity_id: sensor.temperature_158d00019fdfa8
 
 ### Battery level lower than 10% ###
 - platform: template
   sensors:
     battery_temperature_inside_low:
       value_template: '{{ states.sensor.temperature_158d00019fdfa8.attributes.battery_level < 10 }}'
-      friendly_name: 'Temperature Inside battery is low'
+#      friendly_name: 'Temperature Inside battery is low'
       
 #Temperature Outside
 - platform: template
@@ -223,14 +223,14 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: sensor.temperature_158d00019fdfbd
+#      entity_id: sensor.temperature_158d00019fdfbd
 
 ### Battery level lower than 10% ###
 - platform: template
   sensors:
     battery_temperature_outside_low:
       value_template: '{{ states.sensor.temperature_158d00019fdfbd.attributes.battery_level < 10 }}'
-      friendly_name: 'Temperature Outside battery is low'
+#      friendly_name: 'Temperature Outside battery is low'
       
 #Door Sensor
 - platform: template
@@ -262,7 +262,7 @@
                       {% else %}
                          battery-outline
                       {% endif %}'
-      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
+#      entity_id: binary_sensor.door_window_sensor_158d0001002bf2
 
 ### Battery level lower than 10% ###
 - platform: template

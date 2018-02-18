@@ -16,3 +16,10 @@
       - netflix
       - hdmi2
       - plex
+      
+- platform: spotify
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+  # aliases:
+      # abc123def456: 'Living Room'
+      # 9183abas000: 'Bed Room'

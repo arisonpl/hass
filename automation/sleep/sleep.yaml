@@ -25,6 +25,22 @@
     event_data:
       entity_id: binary_sensor.switch_158d0000fd2037
       click_type: single
+  - platform: state
+    entity_id: binary_sensor.marcin_kitchen
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.natalia_kitchen
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.marcin_living_room
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.natalia_living_room
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.sleep_mode
+    state: 'on'
   action:
   - service: input_boolean.turn_off
     entity_id: input_boolean.sleep_mode

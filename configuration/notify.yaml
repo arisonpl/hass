@@ -6,3 +6,8 @@
 - name: telegram_hass_kom_bot
   platform: telegram
   chat_id: !secret telegram_chat_ID
+  
+- name: html5
+  platform: html5
+  gcm_api_key: !secret gcm_api_key
+  gcm_sender_id: !secret gcm_sender_id

@@ -14,17 +14,24 @@
   
 - platform: wake_on_lan
   mac_address: !secret htpc_mac
-  name: HTPC State
+  name: PC
   host: !secret htpc_host
   turn_off:
     service: shell_command.sleep_htpc
     
-- platform: xiaomi_plug
+- platform: xiaomi_miio
   name: TV Strip
   host: 192.168.0.105
   token: !secret tv_strip_token
   
-- platform: xiaomi_plug
+- platform: xiaomi_miio
   name: PC Strip
   host: 192.168.0.104
   token: !secret pc_strip_token
+  
+- platform: command_line
+  switches:
+    bluetooth_shield:
+      command_on: python "/sdcard/.homeassistant/scripts/bluetooth/on.py"
+      command_off: python "/sdcard/.homeassistant/scripts/bluetooth/off.py"
+      value_template: '{{ value == "1" }}'

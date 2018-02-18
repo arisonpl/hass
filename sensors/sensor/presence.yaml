@@ -3,15 +3,18 @@
     marcin_status:
       value_template: '{{ states.input_select.marcin_status_dropdown.state }}'
       friendly_name: 'Marcin'
-      entity_id: input_select.marcin_status_dropdown
+#      entity_id: input_select.marcin_status_dropdown
     natalia_status:
       value_template: '{{ states.input_select.natalia_status_dropdown.state }}'
       friendly_name: 'Natalia'
-      entity_id: input_select.natalia_status_dropdown
+#      entity_id: input_select.natalia_status_dropdown
     residents_status:
       friendly_name: Residents
       value_template: >-
-        {% if is_state('sensor.marcin_status', 'Home') or is_state('sensor.natalia_status', 'Home') %}
+        {% if is_state('sensor.marcin_status', 'Home') or is_state('sensor.natalia_status', 'Home') or 
+        is_state('sensor.marcin_status', 'Living Room') or is_state('sensor.natalia_status', 'Living Room') or 
+        is_state('sensor.marcin_status', 'Kitchen') or is_state('sensor.natalia_status', 'Kitchen') or 
+        is_state('sensor.marcin_status', 'Bedroom') or is_state('sensor.natalia_status', 'Bedroom') %}
           Home
         {% elif is_state('sensor.marcin_status', 'Just Arrived') or is_state('sensor.natalia_status', 'Just Arrived') %}
           Just Arrived
@@ -22,13 +25,154 @@
         {% elif is_state('sensor.marcin_status', 'Extended Away') and is_state('sensor.natalia_status', 'Extended Away') %}
           Extended Away
         {% endif %}
+    marcin_active_tracker:
+      friendly_name: Marcin's active tracker
+      value_template: '{{ states.input_select.marcin_tracker_dropdown.state }}'
+#      entity_id: input_select.marcin_tracker_dropdown
+    natalia_active_tracker:
+      friendly_name: Natalia's active tracker
+      value_template: '{{ states.input_select.natalia_tracker_dropdown.state }}'
+#      entity_id: input_select.natalia_tracker_dropdown
+    marcin_location:
+      friendly_name: Marcin's home location
+      value_template: >-
+        {% if is_state('sensor.marcin_active_tracker', 'Misfit') %}
+          {% if is_state('sensor.misfit', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.misfit', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.misfit', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.misfit', 'not_home') %}
+            not_home            
+          {% endif %}
+        {% elif is_state('sensor.marcin_active_tracker', 'MiBand') %}
+          {% if is_state('sensor.miband', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.miband', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.miband', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.miband', 'not_home') %}
+            not_home
+          {% endif %} 
+        {% elif is_state('sensor.marcin_active_tracker', 'Nut1') %}
+          {% if is_state('sensor.nut1', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.nut1', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.nut1', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.nut1', 'not_home') %}
+            not_home
+          {% endif %}   
+        {% elif is_state('sensor.marcin_active_tracker', 'Nut2') %}
+          {% if is_state('sensor.nut2', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.nut2', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.nut2', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.nut2', 'not_home') %}
+            not_home
+          {% endif %}           
+        {% elif is_state('sensor.marcin_active_tracker', 'None') %}  
+          not_home
+        {% endif %}
+    natalia_location:
+      friendly_name: Natalia's home location
+      value_template: >-
+        {% if is_state('sensor.natalia_active_tracker', 'Misfit') %}
+          {% if is_state('sensor.misfit', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.misfit', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.misfit', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.misfit', 'not_home') %}
+            not_home               
+          {% endif %}
+        {% elif is_state('sensor.natalia_active_tracker', 'MiBand') %}
+          {% if is_state('sensor.miband', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.miband', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.miband', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.miband', 'not_home') %}
+            not_home            
+          {% endif %} 
+        {% elif is_state('sensor.natalia_active_tracker', 'Nut1') %}
+          {% if is_state('sensor.nut1', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.nut1', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.nut1', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.nut1', 'not_home') %}
+            not_home
+          {% endif %}   
+        {% elif is_state('sensor.natalia_active_tracker', 'Nut2') %}
+          {% if is_state('sensor.nut2', 'living-room') %}
+            living-room
+          {% elif is_state('sensor.nut2', 'kitchen') %}
+            kitchen
+          {% elif is_state('sensor.nut2', 'bedroom') %}
+            bedroom
+          {% elif is_state('sensor.nut2', 'not_home') %}
+            not_home
+          {% endif %}   
+        {% elif is_state('sensor.natalia_active_tracker', 'None') %}  
+          not_home
+        {% endif %}
+          
         
-- platform: google_geocode
-  name: Marcin's location
-  origin: device_tracker.marcin_owntrack
-  options: street, street_number, city
+# - platform: google_geocode
+  # name: Marcin's location
+  # origin: device_tracker.marcin_owntrack
+  # options: street, street_number, city
             
-- platform: google_geocode
-  name: Natalia's location
-  origin: device_tracker.natalia_owntrack
-  options: street, street_number, city
+# - platform: google_geocode
+  # name: Natalia's location
+  # origin: device_tracker.natalia_owntrack
+  # options: street, street_number, city
+ 
+ 
+  
+- platform: mqtt_room
+  device_id: c20c70213840
+  name: 'Misfit'
+  state_topic: 'happy-bubbles/presence/ha'
+  timeout: 5
+  away_timeout: 120
+  
+- platform: mqtt_room
+  device_id: c80f102e974b
+  name: 'MiBand'
+  state_topic: 'happy-bubbles/presence/ha'
+  timeout: 5
+  away_timeout: 120
+
+- platform: mqtt_room
+  device_id: e2ad92dc58c5
+  name: 'Nut1'
+  state_topic: 'happy-bubbles/presence/ha'
+  timeout: 5
+  away_timeout: 120
+  
+- platform: mqtt_room
+  device_id: ffff50021e66
+  name: 'Nut2'
+  state_topic: 'happy-bubbles/presence/ha'
+  timeout: 5
+  away_timeout: 120
+  
+- platform: mqtt  
+  state_topic: "hass/kitchen_pir"  
+  name: "Motion Sensor Kitchen"  
+  value_template: '{{ value_json.motion }}'    
+  
+- platform: mqtt  
+  state_topic: "hass/kitchen_pir"  
+  name: "Motion Sensor 2 Kitchen"  
+  value_template: '{{ value_json.presence }}'    

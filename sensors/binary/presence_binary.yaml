@@ -5,11 +5,27 @@
   observations:
     - entity_id: 'device_tracker.marcin_mi5'
       prob_given_true: 1
+      prob_given_false: 0
       platform: 'state'
       to_state: 'home'
-    - entity_id: 'device_tracker.marcin_owntrack'
+    - entity_id: 'sensor.marcin_location'
       prob_given_true: 0.65
       prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'living-room'
+    - entity_id: 'sensor.marcin_location'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'bedroom'
+    - entity_id: 'sensor.marcin_location'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'kitchen'
+    - entity_id: 'device_tracker.marcin_mi5_owntracks'
+      prob_given_true: 0.6
+      prob_given_false: 0.4
       platform: 'state'
       to_state: 'home'
       
@@ -27,4 +43,21 @@
       prob_given_false: 0.35
       platform: 'state'
       to_state: 'home'
-      
+    - entity_id: 'sensor.natalia_location'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'living-room'
+    - entity_id: 'sensor.natalia_location'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'bedroom'
+    - entity_id: 'sensor.natalia_location'
+      prob_given_true: 0.65
+      prob_given_false: 0.35
+      platform: 'state'
+      to_state: 'kitchen'
+        
+
+    

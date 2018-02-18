@@ -89,4 +89,32 @@
     entity_id: scene.default
   # - service: switch.turn_on
     # entity_id: switch.fluxer
+    
+- id: bluetoot_sound_on
+  alias: 'Turn on sound via bluetooth'
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    to: 'Netflix'
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    to: 'Live TV'
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    to: 'YouTube'
+  - platform: state
+    entity_id: media_player.living_room_tv
+    to: 'off'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.bluetooth_shield
    
+- id: bluetooth_sound_off
+  alias: 'Turn off sound via bluetooth'
+  trigger:
+  - platform: state
+    entity_id: sensor.living_room_tv_source
+    to: 'Shield TV'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.bluetooth_shield
